@@ -19,5 +19,16 @@
             @endforeach   
         </div>
     </div>
+    @if($adverts->total() > $adverts->count())
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        {{$adverts->links()}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
 </div>
 @endsection
