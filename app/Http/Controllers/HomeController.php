@@ -23,7 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $adverts = Advert::all();
         return view('home');
     }
 }

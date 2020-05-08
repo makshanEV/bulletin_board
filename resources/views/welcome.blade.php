@@ -28,14 +28,16 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <!-- <ul class="navbar-nav mr-auto"> 
+                    @auth
+                    <ul class="navbar-nav mr-auto"> 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.categories.index') }}">Категории</a>
+                            <a class="nav-link" href="{{ route('admin.categories.index') }}">Мои объявления</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.users.index') }}">Пользователи</a>
+                            <a class="nav-link" href="{{ route('admin.users.index') }}">Профиль</a>
                         </li>
-                    </ul>-->
+                    </ul>
+                    @endauth
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
