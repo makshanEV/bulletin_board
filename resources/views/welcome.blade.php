@@ -31,7 +31,7 @@
                     @auth
                     <ul class="navbar-nav mr-auto"> 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.categories.index') }}">Мои объявления</a>
+                            <a class="nav-link" href="{{ route('myadverts.index') }}">Мои объявления</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.users.index') }}">Профиль</a>

@@ -18,6 +18,8 @@ Auth::routes();
 Route::get('advertmore={id}', 'AdvertMoreController')->name('advertmore');
 
 Route::get('/home', 'HomeController@index')->name('home');
+//Пользовательская часть
+Route::resource('/myadverts', 'MyAdvertController');
 //Админчасть
 $groupData = [
 	'namespace' => 'Admin',
