@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Advert;
+use App\Models\Category;
 
 class MyAdvertController extends Controller
 {
@@ -27,7 +28,11 @@ class MyAdvertController extends Controller
      */
     public function create()
     {
-        //
+        $advert = new Advert();
+        $categories = Category::all();
+        $userId = Auth::user()->id;
+        return view('adverts.create', compact('advert','categories','userId'));
+
     }
 
     /**
@@ -36,9 +41,19 @@ class MyAdvertController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Advert $advert)
     {
-        //
+        $advert->fill($request->all());
+        $advert->user_id = auth()->user()->id;
+        $advert->saveOrfail();
+        if ($advert->exists) {
+            return redirect()->route('myadverts.index', $advert->id)
+            ->with(['success'=>'Сохранение выполнено']);
+        }
+        else {
+            return back()->withErrors(['msg'=>'Ошибка сохранения'])
+            ->withInput();
+        }
     }
 
     /**
@@ -60,7 +75,8 @@ class MyAdvertController extends Controller
      */
     public function edit($id)
     {
-        //
+        $advert = Advert::findOrFail($id);
+        return view('adverts.edit', compact('advert'));
     }
 
     /**
@@ -72,7 +88,19 @@ class MyAdvertController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $advert = Advert::find($id);
+        if (empty($advert)) {
+            return back()
+                ->withErrors(['msg'=>'Запись {$id} не найдена'])
+                ->withInput();
+        }
+        $data = $request->input();
+        $result = $advert->update($data);
+        if($result) {
+            return redirect()
+            ->route('myadverts.edit', $advert->id)
+            ->with(['success'=>'Сохранение выполнено']);
+        }
     }
 
     /**

@@ -75,9 +75,6 @@
             </div>
         </nav>
             <div class="content">
-                <div class="title m-b-md">
-                    Доска объявлений
-                </div>
                 @yield('content')
             </div>
         </div>
